@@ -25,10 +25,18 @@ namespace ariel
     public:
         // ctor
         Team(Character *leader);
-        void add(Character *palyer);
-        bool stillAlive();
-        void print();
-        void attack(Team *clans);
+        // des ctor
+        virtual ~Team()
+        {
+            for (size_t i = 0; i < _members.size(); i++)
+            {
+                delete _members.at(i);
+            }
+        }
+        virtual void add(Character *palyer);
+        virtual bool stillAlive();
+        virtual void print();
+        virtual void attack(Team *clans);
     };
 };
 #endif // TEAM_HPP

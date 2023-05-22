@@ -22,6 +22,7 @@ protected:
     bool _inAlive = true;
 
 public:
+    bool member = false;
     /**
      * return if Charcater is alive
      * @return bool - true\false
