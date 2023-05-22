@@ -37,10 +37,10 @@ public:
     virtual void move(Character *player) {}
     /* attack the enemy */
     virtual void slash(Character *player) {}
-    virtual bool isAlive()
-    {
-        return true;
-    }
+    // virtual bool isAlive()
+    // {
+    //     return true;
+    // }
 };
 
 #endif // NINJA_HPP
