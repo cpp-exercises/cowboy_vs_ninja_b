@@ -35,7 +35,7 @@ namespace ariel
 
         // getter's (string value's)
 
-        Point moveTowards(Point, Point, double); // ->double -raduis
+        static Point moveTowards(Point, Point, double); // ->double -raduis
         double getx();
         double gety();
     };

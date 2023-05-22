@@ -25,7 +25,8 @@ namespace ariel
         string print();
         void hit(int damage);
         void setName(string name);
-        //bool isAlive();
+        // bool isAlive();
+        void slash(Character *player);
     };
 };
 #endif // YOUNGNINJA_HPP

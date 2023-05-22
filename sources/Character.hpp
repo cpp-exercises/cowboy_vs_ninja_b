@@ -33,7 +33,7 @@ public:
             _inAlive = true;
             return true;
         }
-        _inAlive =false;
+        _inAlive = false;
         return false;
     }
     /**

@@ -55,15 +55,26 @@ namespace ariel
 
     void Cowboy::shoot(Character *player)
     {
-        if (player->isAlive() && this->_inAlive)
+        if (this->number_of_boolts == 0)
         {
-            // need to decrease from the oppenet
+
+            throw std::runtime_error("there no boolts ");
+        }
+        else if (this == player)
+        {
+            throw std::runtime_error("cannot shoot my self ");
+        }
+        else if ((player->isAlive()) && (this->_inAlive) && (this->number_of_boolts != 0))
+        {
+            // need to decrease from the oppenet health
             player->setHealth(10);
+            // decreas the boolts
             number_of_boolts -= 1;
         }
         else if (!(this->_inAlive))
         {
-            // nothing to do
+            // im dead how i can shoot ?!!
+            throw std::runtime_error("im dead  ");
         }
     }
 

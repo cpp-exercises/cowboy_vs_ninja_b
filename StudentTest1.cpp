@@ -703,4 +703,4 @@ TEST_SUITE("Battle simulations")
             CHECK(((team.stillAlive() && !team2.stillAlive()) || (!team.stillAlive() && team2.stillAlive())));
         }
     }
-}
+};

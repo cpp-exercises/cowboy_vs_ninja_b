@@ -33,12 +33,32 @@ namespace ariel
         {
             _health -= damage;
         }
-            _health -= damage;
-            this->_inAlive = false;
-        
+        _health -= damage;
+        this->_inAlive = false;
     }
     void YoungNinja::setName(string name)
     {
         this->_name = name;
+    }
+    void YoungNinja::slash(Character *player)
+    {
+        if (this->_health <= 0)
+        {
+
+            throw std::runtime_error("im dead ");
+        }
+        else if (this == player)
+        {
+            throw std::runtime_error("cannot slash my self ");
+        }
+        else if (!(player->isAlive()))
+        {
+            // im dead how i can shoot ?!!
+            throw std::runtime_error("cannot slash dead player ");
+        }
+        else
+        {
+            player->hit(40);
+        }
     }
 };

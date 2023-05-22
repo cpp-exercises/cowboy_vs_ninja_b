@@ -25,7 +25,7 @@ namespace ariel
         string print();
         void hit(int number_hits);
         void setName(string name);
-        
+        void slash(Character *player) {}
     };
 
 };

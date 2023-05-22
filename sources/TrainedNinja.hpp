@@ -8,7 +8,6 @@
 #define TRAINEDNINJA_HPP
 #include "Ninja.hpp"
 
-
 using std::string;
 namespace ariel
 {
@@ -28,6 +27,7 @@ namespace ariel
         void hit(int);
         void setName(string name);
         bool isAlive();
+        void slash(Character *player) {}
     };
 };
 #endif // TRAINEDNINJA_HPP

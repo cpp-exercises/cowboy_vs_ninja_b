@@ -43,4 +43,25 @@ namespace ariel
         _name = name;
     }
 
+    void OldNinja::slash(Character *player)
+    {
+        if (this->_health <= 0)
+        {
+
+            throw std::runtime_error("im dead ");
+        }
+        else if (this == player)
+        {
+            throw std::runtime_error("cannot slash my self ");
+        }
+        else if (!(player->isAlive()))
+        {
+            // im dead how i can shoot ?!!
+            throw std::runtime_error("cannot slash dead player ");
+        }
+        else
+        {
+            player->hit(40);
+        }
+    }
 };
