@@ -22,8 +22,6 @@ namespace ariel
     private:
         int _hitPoints;
         int number_of_boolts;
-        string _name;
-        Point _point;
 
     public:
         // ctor
@@ -32,14 +30,9 @@ namespace ariel
         void shoot(Character *player);
         bool hasboolets();
         void reload();
-        double distance(Character *) const;
-        string getName();
-        Point getLocation();
         string print();
-        void hit(int);
-        void setName(string new_name);
-        //void move(Character *);
-        //void setHealth(int afterShoot);
+        // void move(Character *);
+        // void setHealth(int afterShoot);
     };
 
 };

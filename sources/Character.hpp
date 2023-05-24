@@ -12,46 +12,44 @@
 
 using namespace ariel;
 
-// Interface(Abstract class
-// with pure virtual function)
+//(Abstract class)
+
 class Character
 {
 protected:
-    // deafult
-    int _health = 120;
-    bool _inAlive = true;
+    /// data member's
+    string _name;
+    Point _location;
+    int _health = 0;
+    bool _inAlive;
+    int _sort = 0;
+    bool _member;
 
 public:
+    // ctor
+    Character(const string &, Point);
+    // default
+    Character();
     bool member = false;
     /**
      * return if Charcater is alive
      * @return bool - true\false
      */
-    virtual bool isAlive()
-    {
-        if (_health > 0)
-        {
-            _inAlive = true;
-            return true;
-        }
-        _inAlive = false;
-        return false;
-    }
+    bool isAlive();
     /**
      * the distance between this and other Character
      * @return double
      */
-    virtual double distance(ariel::Point *) const { return 0; }
-    virtual string getName() { return "ariel"; }
-    virtual Point getLocation() { return Point(); }
-    virtual string print() { return "print"; }
-    virtual void hit(int damage) {}
-    virtual void setName(string) {}
-    virtual double health() { return _health; }
-    virtual void setHealth(int afterShoot)
-    {
-        this->_health -= afterShoot;
-    }
+    double distance(Character *) const;
+    string getName();
+    Point getLocation();
+    string print();
+    void hit(int damage);
+
+    //
+    void setName(string new_name);
+    double health();
+    void setHealth(int afterShoot);
 };
 
 #endif // CHARACTER_HPP

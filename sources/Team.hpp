@@ -5,36 +5,39 @@
  */
 
 #ifndef TEAM_H
-
 #define TEAM_H
+
 #include "Cowboy.hpp"
 #include "OldNinja.hpp"
 #include "YoungNinja.hpp"
 #include "TrainedNinja.hpp"
 #include <vector>
+#include <iostream>
+#include <cmath>
 using std::vector;
+
 namespace ariel
 {
 
     class Team
     {
-    private:
-        Character *leader;
-        vector<Character *> _members;
 
     public:
+        vector<Character *> clan;
+        Character *leader;
+
         // ctor
         Team(Character *leader);
-        // des ctor
+        // des-ctor
         virtual ~Team()
         {
-            for (size_t i = 0; i < _members.size(); i++)
+            for (size_t i = 0; i < clan.size(); i++)
             {
-                delete _members.at(i);
+                delete clan.at(i);
             }
-        }
+        };
         virtual void add(Character *palyer);
-        virtual bool stillAlive();
+        virtual int stillAlive();
         virtual void print();
         virtual void attack(Team *clans);
     };

@@ -15,17 +15,12 @@ namespace ariel
 
     class YoungNinja : public Ninja, public Character
     {
-    private:
     public:
         // ctor
         YoungNinja(string, Point);
-        double distance(Character *) const;
-        string getName();
-        Point getLocation();
+
         string print();
-        void hit(int damage);
-        void setName(string name);
-        // bool isAlive();
+
         void slash(Character *player);
     };
 };

@@ -4,28 +4,13 @@
 namespace ariel
 {
 
-    Cowboy::Cowboy(string Cowboy_name, Point point) : _name(Cowboy_name), _point(point)
+    Cowboy::Cowboy(string Cowboy_name, Point point) : Character(Cowboy_name, point)
     {
         this->number_of_boolts = 6;
-        // after inheritance need to overload relevant health points
+        // after inheritance need to overload relevant health points to relevant type
         this->_health = 110;
-        this->_hitPoints = 0;
-    }
-
-    double Cowboy::distance(Character *player) const
-    {
-        const Point p = (this->_point);
-        double dist = player->getLocation().distance(p);
-    };
-
-    string Cowboy::getName()
-    {
-        return this->_name;
-    }
-
-    Point Cowboy::getLocation()
-    {
-        return this->_point;
+        // update the type of character after its definded to be Cowboy
+        this->_sort = 1;
     }
 
     string Cowboy::print()
@@ -36,21 +21,6 @@ namespace ariel
             return "C :[(name :" + this->_name + ", location : " + this->getLocation().print() + ", isAlive : " + to_string(value_bool) + " number of hits : " + to_string(_hitPoints) + "]";
         }
         return "C :[(name :" + this->_name + ", location : " + this->getLocation().print() + ", isAlive : " + to_string(value_bool) + "]";
-    }
-
-    void Cowboy::hit(int points)
-    {
-        if (points > number_of_boolts)
-        {
-            throw std::out_of_range(" they cant hit more than 6 in per shoot ");
-        }
-        number_of_boolts -= points;
-        _hitPoints += points;
-    }
-
-    void Cowboy::setName(string new_name)
-    {
-        _name = new_name;
     }
 
     void Cowboy::shoot(Character *player)
@@ -95,9 +65,5 @@ namespace ariel
         }
         throw std::runtime_error(" isnot alive there no need ");
     }
-
-    // void Cowboy::move(Character *other)
-    // {
-    // }
 
 };

@@ -13,19 +13,14 @@ namespace ariel
 
     class OldNinja : public Character, public Ninja
     {
-    private:
-        string _name = "old ninja";
 
     public:
         // ctor
         OldNinja(string, Point);
-        double distance(Character *) const;
-        string getName();
-        Point getLocation();
+
         string print();
-        void hit(int number_hits);
-        void setName(string name);
-        void slash(Character *player) {}
+
+        void slash(Character *player);
     };
 
 };

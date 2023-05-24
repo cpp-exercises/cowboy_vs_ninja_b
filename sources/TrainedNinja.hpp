@@ -20,14 +20,11 @@ namespace ariel
 
     public:
         TrainedNinja(string, Point);
-        double distance(Character *) const;
-        string getName();
-        Point getLocation();
+        // string getName();
+
         string print();
-        void hit(int);
-        void setName(string name);
-        bool isAlive();
-        void slash(Character *player) {}
+
+        void slash(Character *player);
     };
 };
 #endif // TRAINEDNINJA_HPP

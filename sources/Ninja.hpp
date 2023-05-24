@@ -20,19 +20,17 @@ class Ninja
 protected:
     // data member's
     int _speed;
-    Point _location;
-    string _name;
+    Point _point;
 
 public:
     // ctor
-    Ninja(string name, Point point) : _location(point)
+    Ninja(Point point) : _point(point)
     {
-        this->_name = name;
         // by default
         this->_speed = 0;
     }
     // default ctor
-    Ninja() : _location(Point()) { this->_name = "default ninja "; }
+    Ninja() = default;
     /* move to the enemy location*/
     virtual void move(Character *player) {}
     /* attack the enemy */

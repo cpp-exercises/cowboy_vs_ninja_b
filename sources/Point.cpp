@@ -26,8 +26,8 @@ namespace ariel
 
     double Point::distance(const Point &other) const
     {
-        double dx = _x - other._x;
-        double dy = _y - other._y;
+        double dx = this->_x - other._x;
+        double dy = this->_y - other._y;
         return sqrt(dx * dx + dy * dy);
     };
 
@@ -44,24 +44,22 @@ namespace ariel
         {
             throw std::invalid_argument("Coannot by negative distance");
         }
-        else if (distance == 0)
+        if (distance == curr_distance)
         {
             // if there tow charcters on the same point we want to  move them apart by an epsilon radius
-            double epsil = std::numeric_limits<double>::epsilon();
-            return Point(point1._x - epsil, point1._y - epsil);
+            // double epsil = std::numeric_limits<double>::epsilon();
+            // return Point(point1._x - epsil, point1._y - epsil);
+            return point1;
         }
-        else
-        {
 
-            // https://www.wikihow.com/Find-Scale-Factor
-            double scalingFactor = distance / curr_distance;
-            // new coordinates
-            double dx = point0._x - point1._x;
-            double dy = point0._y - point1._y;
-            double new_x = point0._x + dx * scalingFactor;
-            double new_y = point0._y + dy * scalingFactor;
-            return Point{new_x, new_y};
-        }
+        // https://www.wikihow.com/Find-Scale-Factor
+        double scalingFactor = distance / curr_distance;
+        // new coordinates
+        double dx = point1._x - point0._x;
+        double dy = point1._y - point0._y;
+        double new_x = point0._x + dx * scalingFactor;
+        double new_y = point0._y + dy * scalingFactor;
+        return Point{new_x, new_y};
     }
     double Point::getx() { return _x; }
     double Point::gety() { return _y; }

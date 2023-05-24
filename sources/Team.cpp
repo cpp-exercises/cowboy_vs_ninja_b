@@ -7,7 +7,9 @@ using namespace ariel;
 
 Team::Team(Character *caption) : leader(caption)
 {
-    this->_members.push_back(caption);
+    this->leader = caption;
+    this->clan.push_back(caption);
+    this->leader->member = true;
 }
 
 void Team::add(Character *palyer)
@@ -16,16 +18,28 @@ void Team::add(Character *palyer)
     {
         throw std::runtime_error(" aleardy in the team ");
     }
-    else if (this->_members.size() == 10)
+    if (this->clan.size() == 10)
     {
-        throw std::runtime_error(" its full team ");
+        throw std::runtime_error(" its full team !");
     }
-    else
-    {
-        this->_members.push_back(palyer);
-        palyer->member = true;
-    }
+
+    // add them to vector of member's
+    clan.push_back(palyer);
+    palyer->member = true;
 }
-bool Team::stillAlive() { return false; }
+int Team::stillAlive()
+{
+    int aliveCount = 0;
+    for (size_t i = 0; i < this->clan.size(); i++)
+    {
+        if (this->clan.at(i)->isAlive() == true)
+        {
+            aliveCount++;
+        }
+    }
+    return aliveCount;
+}
 void Team::print() {}
-void Team::attack(Team *clans) {}
+void Team::attack(Team *clans)
+{
+}
