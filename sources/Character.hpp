@@ -20,17 +20,19 @@ protected:
     /// data member's
     string _name;
     Point _location;
-    int _health = 0;
-    bool _inAlive;
-    int _sort = 0;
-    bool _member;
 
 public:
+    bool _member;
+    bool already_Caption;
+    int _sort = 0;
+    int health_Points = 0;
     // ctor
     Character(const string &, Point);
     // default
     Character();
-    bool member = false;
+    // virtual ctor
+    virtual ~Character() = default;
+
     /**
      * return if Charcater is alive
      * @return bool - true\false
@@ -40,15 +42,15 @@ public:
      * the distance between this and other Character
      * @return double
      */
-    double distance(Character *) const;
-    string getName();
-    Point getLocation();
-    string print();
-    void hit(int damage);
+    virtual double distance(Character *) const;
+    virtual string getName();
+    virtual Point getLocation();
+    virtual string print() = 0;
+    virtual void hit(int damage);
 
     //
     void setName(string new_name);
-    double health();
+    // double gethealth();
     void setHealth(int afterShoot);
 };
 

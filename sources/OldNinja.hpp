@@ -11,16 +11,12 @@ using std::string;
 namespace ariel
 {
 
-    class OldNinja : public Character, public Ninja
+    class OldNinja : public Ninja
     {
 
     public:
         // ctor
         OldNinja(string, Point);
-
-        string print();
-
-        void slash(Character *player);
     };
 
 };

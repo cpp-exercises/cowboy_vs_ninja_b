@@ -1,12 +1,16 @@
 #include "Character.hpp"
 using namespace ariel;
 
+using std::cout;
+using std::endl;
+
 Character::Character(const string &name, Point location) : _name(name), _location(location)
 {
     // default values that  will change deponed on type of the character
-    this->_health = 120;
-    this->_inAlive = true;
+    this->health_Points = 120;
     this->_sort = 0;
+    this->_member = false;
+    this->already_Caption = false;
 }
 
 Character::Character() //: _name("default version"), _location(Point())
@@ -24,16 +28,15 @@ Point Character::getLocation()
     return this->_location;
 }
 
-string Character::print() { return "hello"; }
+// string Character::print() { return "hello"; }
 
 void Character::hit(int damage)
 {
-    if (damage < _health)
+    if (damage < health_Points)
     {
-        _health -= damage;
+        health_Points -= damage;
     }
 
-    this->_inAlive = false;
 }
 
 void Character::setName(string name)
@@ -47,16 +50,17 @@ string Character::getName()
 }
 bool Character::isAlive()
 {
-    if (_health > 0)
-    {
-        _inAlive = true;
-        return true;
-    }
-    _inAlive = false;
-    return false;
+
+    cout << "here check :" << health_Points << endl;
+    return this->health_Points > 0;
 }
 
 void Character::setHealth(int afterShoot)
 {
-    _health -= afterShoot;
+    health_Points -= afterShoot;
 }
+
+// double Character::gethealth()
+// {
+//     return health_Points;
+// }

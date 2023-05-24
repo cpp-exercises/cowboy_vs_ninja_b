@@ -30,9 +30,8 @@ namespace ariel
         void shoot(Character *player);
         bool hasboolets();
         void reload();
-        string print();
-        // void move(Character *);
-        // void setHealth(int afterShoot);
+        string print() override;
+
     };
 
 };

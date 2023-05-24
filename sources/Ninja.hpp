@@ -13,32 +13,27 @@ using std::string;
 using namespace ariel;
 
 // using namespace ariel;
-class Ninja
+class Ninja : public Character
 {
     // Interface(Abstract class
     // with pure virtual function)
 protected:
     // data member's
     int _speed;
-    Point _point;
 
 public:
+    Point _point;
     // ctor
-    Ninja(Point point) : _point(point)
-    {
-        // by default
-        this->_speed = 0;
-    }
+    Ninja(const string &name, Point point, int health, int speed);
+
     // default ctor
     Ninja() = default;
     /* move to the enemy location*/
-    virtual void move(Character *player) {}
+    void move(Character *other_player);
     /* attack the enemy */
-    virtual void slash(Character *player) {}
-    // virtual bool isAlive()
-    // {
-    //     return true;
-    // }
+    void slash(Character *player);
+
+    string print();
 };
 
 #endif // NINJA_HPP

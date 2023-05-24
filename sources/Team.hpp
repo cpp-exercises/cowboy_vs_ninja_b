@@ -14,6 +14,10 @@
 #include <vector>
 #include <iostream>
 #include <cmath>
+#include <cstddef>
+#include <limits>
+using std::cout;
+using std::endl;
 using std::vector;
 
 namespace ariel
@@ -39,6 +43,7 @@ namespace ariel
         virtual void add(Character *palyer);
         virtual int stillAlive();
         virtual void print();
+        virtual Character *closestToMe(Team *);
         virtual void attack(Team *clans);
     };
 };

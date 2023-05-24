@@ -8,19 +8,18 @@ namespace ariel
     {
         this->number_of_boolts = 6;
         // after inheritance need to overload relevant health points to relevant type
-        this->_health = 110;
+        this->health_Points = 110;
         // update the type of character after its definded to be Cowboy
         this->_sort = 1;
     }
 
     string Cowboy::print()
     {
-        int value_bool = (int)this->_inAlive;
-        if (_inAlive)
+        if (this->isAlive())
         {
-            return "C :[(name :" + this->_name + ", location : " + this->getLocation().print() + ", isAlive : " + to_string(value_bool) + " number of hits : " + to_string(_hitPoints) + "]";
+            return "C :[(name :" + this->_name + ", location : " + this->getLocation().print() +" number of hits : " + to_string(health_Points) + "]";
         }
-        return "C :[(name :" + this->_name + ", location : " + this->getLocation().print() + ", isAlive : " + to_string(value_bool) + "]";
+        return "C :[(name :" + this->_name + ", location : " + this->getLocation().print()  + "health" + to_string(health_Points) + "]";
     }
 
     void Cowboy::shoot(Character *player)
@@ -30,18 +29,18 @@ namespace ariel
 
             throw std::runtime_error("there no boolts ");
         }
-        else if (this == player)
+        if (this == player)
         {
             throw std::runtime_error("cannot shoot my self ");
         }
-        else if ((player->isAlive()) && (this->_inAlive) && (this->number_of_boolts != 0))
+        if ((player->isAlive()) && (this->isAlive()) && (this->number_of_boolts != 0))
         {
             // need to decrease from the oppenet health
-            player->setHealth(10);
+            player->hit(10);
             // decreas the boolts
             number_of_boolts -= 1;
         }
-        else if (!(this->_inAlive))
+        if (!(this->isAlive()))
         {
             // im dead how i can shoot ?!!
             throw std::runtime_error("im dead  ");

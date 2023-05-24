@@ -11,6 +11,8 @@
 #include <chrono>
 
 using namespace ariel;
+using std::cout;
+using std::endl;
 
 //<--------------------Helper Functions-------------------->
 // https://www.geeksforgeeks.org/generate-a-random-float-number-in-cpp/
@@ -154,7 +156,6 @@ TEST_SUITE("Classes initialization tests and Team modification( add(),stillAlive
         CHECK_EQ(trained_ninja.getName(), "Bob");
         CHECK_EQ(trained_ninja.getLocation().distance(Point{2, 3}), 0);
         CHECK_NE(trained_ninja.getLocation().distance(Point{3, 2}), 0);
-
         CHECK(trained_ninja.isAlive());
     }
 
@@ -331,7 +332,7 @@ TEST_SUITE("Battle related methods")
             old.slash(&cowboy);
             young.slash(&cowboy);
         }
-
+        cout << "the health of cowboy : " << cowboy.gethealth() << endl;
         CHECK(cowboy.isAlive());
 
         old.slash(&cowboy);

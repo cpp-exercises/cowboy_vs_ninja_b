@@ -12,19 +12,12 @@ using std::string;
 namespace ariel
 {
 
-    class TrainedNinja : public Ninja, public Character
+    class TrainedNinja : public Ninja
     {
-    private:
-        bool inAlive = true;
-        int health = 0;
 
     public:
+        // ctor
         TrainedNinja(string, Point);
-        // string getName();
-
-        string print();
-
-        void slash(Character *player);
     };
 };
 #endif // TRAINEDNINJA_HPP
