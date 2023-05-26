@@ -29,19 +29,31 @@ int main() {
     sushi->slash(tom);
 
     Team team_A(tom); 
-    team_A.add(new YoungNinja("Yogi", Point(64,57)));
+    Point d (64,57);
+    YoungNinja *Yogi= new YoungNinja("Yogi", d);
+    team_A.add(Yogi);
 
     // Team b(tom); should throw tom is already in team a
 
-     Team team_B(sushi);
-     team_B.add(new TrainedNinja("Hikari", Point(12,81)));
+     Team team_B(sushi); ///the problem is when tom,=0 and yogi =100
+      Point c(12,81);
+     TrainedNinja *Hikary =new TrainedNinja("Hikari", c);
+     team_B.add(Hikary);
+
+      cout<<"herre!!!!!"<<endl;
 
 
-     while(team_A.stillAlive() > 0 && team_B.stillAlive() > 0){
+     while(team_A.stillAlive() > 0&& team_B.stillAlive() > 0 ){
+       cout<<" new turn"<<endl;
         team_A.attack(&team_B);
         team_B.attack(&team_A);
         team_A.print();
+       Yogi->getLocation().print();
+
         team_B.print();
+       Hikary->getLocation().print();
+       sushi->getLocation().print();
+         
      }
 
      if (team_A.stillAlive() > 0) cout << "winner is team_A" << endl;
