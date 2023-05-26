@@ -10,6 +10,7 @@ using namespace std;
 namespace ariel{
 
 
+//used the help of ofri leifer and yovel zigdon
 
 Team:: Team (Character* first){
 
@@ -130,7 +131,7 @@ Team::~Team() {
 
 
 
-
+//used the help of ofri leifer
        void Team::attack(Team *enemy){
        
         if (enemy == nullptr){
