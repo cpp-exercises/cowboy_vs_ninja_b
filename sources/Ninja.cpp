@@ -48,14 +48,14 @@ void Ninja::slash(Character *player)
 
 void Ninja::move(Character *other_player)
 {
-
-  //  Point location_otherp = this->_location.moveTowards(this->_location, other_player->getLocation(), this->_speed);
-
     this->_location = this->_location.moveTowards(this->_location, other_player->getLocation(), this->_speed);
-
 }
 
 string Ninja::print()
 {
-    return "N:[( " + this->_name + ", " + this->getLocation().print() + "number of hits " + to_string(this->health_Points) + " )]";
+    if (isAlive())
+    {
+        return "N:[( " + this->_name + ", " + this->getLocation().print() + "number of hits " + to_string(this->health_Points) + " )]";
+    }
+    return "N:[( " + this->_name + ", " + this->getLocation().print() + " )]";
 }

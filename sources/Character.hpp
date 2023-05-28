@@ -25,14 +25,13 @@ public:
     // 1-> Cowboy
     // 2-> Ninja
     int _sort = 0;
-    int health_Points = 0;// NOLINT
+    int health_Points = 0; // NOLINT
     // ctor
     Character(const string &, Point);
     // default
     Character();
     // virtual ctor
     virtual ~Character() = default;
-
     /**
      * return if Charcater is alive
      * @return bool - true\false
@@ -43,13 +42,16 @@ public:
      * @return double
      */
     virtual double distance(Character *);
-    virtual string getName();
-    virtual Point getLocation();
     virtual string print() = 0;
     virtual void hit(const int damage);
 
-    //
+    /*setter's*/
     void setName(string new_name);
+    /*getter's*/
+    virtual string getName();
+    /*getter's*/
+    virtual Point getLocation();
+    /*getter's*/
     double gethealth();
 };
 

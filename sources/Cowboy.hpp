@@ -20,7 +20,7 @@ namespace ariel
     class Cowboy : public Character
     {
     private:
-        //int _hitPoints;
+        // int _hitPoints;
         int number_of_boolts;
 
     public:
@@ -28,10 +28,14 @@ namespace ariel
         Cowboy(string, Point);
         //  methods
         void shoot(Character *player);
+
+        /*
+         * return true if we have bullet or not return false
+         */
         bool hasboolets();
+        /* load the gun with full bullets - 6 bullets*/
         void reload();
         string print() override;
-
     };
 
 };

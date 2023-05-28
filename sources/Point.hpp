@@ -37,8 +37,9 @@ namespace ariel
         // with distance tow points src and dest, opreation move to .
 
         static Point moveTowards(Point, Point, double);
-
+        /*getter's*/
         double getx();
+        /*getter's*/
         double gety();
     };
 
