@@ -27,7 +27,7 @@ double Character::distance(Character *other)
 
 Point Character::getLocation()
 {
-    return this->_location;
+    return _location;
 }
 
 // string Character::print() { return "hello"; }
