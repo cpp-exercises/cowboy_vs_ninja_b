@@ -24,10 +24,10 @@ protected:
 public:
     Point _point;
     // ctor
-    Ninja(const string &name, Point point, int health, int speed);
+    Ninja(string name, Point point, int health, int speed);
 
     // default ctor
-    Ninja() = default;
+    Ninja();
     /* move to the enemy location*/
     void move(Character *other_player);
     /* attack the enemy */

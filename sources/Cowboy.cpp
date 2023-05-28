@@ -17,9 +17,9 @@ namespace ariel
     {
         if (this->isAlive())
         {
-            return "C :[(name :" + this->_name + ", location : " + this->getLocation().print() +" number of hits : " + to_string(health_Points) + "]";
+            return "C :[(name :" + this->_name + ", location : " + this->getLocation().print() + " number of hits : " + to_string(health_Points) + "]";
         }
-        return "C :[(name :" + this->_name + ", location : " + this->getLocation().print()  + "health" + to_string(health_Points) + "]";
+        return "C :[(name :" + this->_name + ", location : " + this->getLocation().print() + "health" + to_string(health_Points) + "]";
     }
 
     void Cowboy::shoot(Character *player)
@@ -27,42 +27,44 @@ namespace ariel
         if (this->number_of_boolts == 0)
         {
 
-            throw std::runtime_error("there no boolts ");
+            return;
         }
+
+        if (this->health_Points <= 0)
+        {
+            throw std::runtime_error("im dead there no way to shoot ");
+        }
+
         if (this == player)
         {
             throw std::runtime_error("cannot shoot my self ");
         }
-        if ((player->isAlive()) && (this->isAlive()) && (this->number_of_boolts != 0))
-        {
-            // need to decrease from the oppenet health
-            player->hit(10);
-            // decreas the boolts
-            number_of_boolts -= 1;
-        }
-        if (!(this->isAlive()))
+
+        if (player->isAlive() == false)
         {
             // im dead how i can shoot ?!!
             throw std::runtime_error("im dead  ");
         }
+
+        // need to decrease from the oppenet health
+        player->hit(10);
+        // decreas the boolts
+        this->number_of_boolts -= 1;
     }
 
     bool Cowboy::hasboolets()
     {
-        if (this->number_of_boolts <= 0)
-        {
-            return false;
-        }
-        return true;
+
+        return (this->number_of_boolts > 0);
     }
 
     void Cowboy::reload()
     {
-        if (isAlive())
+        if (this->health_Points <= 0)
         {
-            this->number_of_boolts = 6;
+            throw std::runtime_error(" isnot alive there no need ");
         }
-        throw std::runtime_error(" isnot alive there no need ");
+        this->number_of_boolts = 6;
     }
 
 };

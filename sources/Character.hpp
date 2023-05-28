@@ -12,8 +12,6 @@
 
 using namespace ariel;
 
-//(Abstract class)
-
 class Character
 {
 protected:
@@ -24,6 +22,8 @@ protected:
 public:
     bool _member;
     bool already_Caption;
+    // 1-> Cowboy
+    // 2-> Ninja
     int _sort = 0;
     int health_Points = 0;
     // ctor
@@ -37,21 +37,20 @@ public:
      * return if Charcater is alive
      * @return bool - true\false
      */
-    bool isAlive();
+    virtual bool isAlive();
     /**
      * the distance between this and other Character
      * @return double
      */
-    virtual double distance(Character *) const;
+    virtual double distance(Character *);
     virtual string getName();
     virtual Point getLocation();
     virtual string print() = 0;
-    virtual void hit(int damage);
+    virtual void hit(const int damage);
 
     //
     void setName(string new_name);
-    // double gethealth();
-    void setHealth(int afterShoot);
+    double gethealth();
 };
 
 #endif // CHARACTER_HPP

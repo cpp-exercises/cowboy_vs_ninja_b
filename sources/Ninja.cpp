@@ -9,34 +9,38 @@ using std::cout;
 using std::endl;
 using namespace ariel;
 
-Ninja::Ninja(const string &name, Point point, int health, int speed)
+Ninja::Ninja(string name, Point point, int health, int speed) : Character(name, point)
 {
 
-    this->_name = name;
     // by default
     this->_speed = speed;
     this->health_Points = health;
-    this->_location = point;
+    this->_sort = 2;
 }
+
+Ninja ::Ninja() {}
 
 void Ninja::slash(Character *player)
 {
 
-    if (!(this->isAlive()))
+    if (this->health_Points <= 0)
     {
 
         throw std::runtime_error("im dead ");
     }
-    else if (this == player)
+
+    if (this == player)
     {
-        throw std::runtime_error("cannot slash my self ");
+        throw std::runtime_error("cannot slash your self ");
     }
-    else if (!(player->isAlive()))
+
+    if (player->isAlive() == false)
     {
         // im dead how i can shoot ?!!
         throw std::runtime_error("cannot slash dead player ");
     }
-    else
+
+    if (this->getLocation().distance(player->getLocation()) <= 1)
     {
         player->hit(40);
     }
@@ -45,11 +49,13 @@ void Ninja::slash(Character *player)
 void Ninja::move(Character *other_player)
 {
 
-    Point location_otherp = other_player->getLocation();
-    this->_point.moveTowards(this->getLocation(), location_otherp, this->_speed);
+  //  Point location_otherp = this->_location.moveTowards(this->_location, other_player->getLocation(), this->_speed);
+
+    this->_location = this->_location.moveTowards(this->_location, other_player->getLocation(), this->_speed);
+
 }
 
 string Ninja::print()
 {
-    return "N:[( " + this->_name + ", " + this->getLocation().print() + ")]";
+    return "N:[( " + this->_name + ", " + this->getLocation().print() + "number of hits " + to_string(this->health_Points) + " )]";
 }

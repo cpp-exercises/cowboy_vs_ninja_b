@@ -14,8 +14,8 @@
 #include <vector>
 #include <iostream>
 #include <cmath>
-#include <cstddef>
 #include <limits>
+#include <cfloat>
 using std::cout;
 using std::endl;
 using std::vector;
@@ -31,7 +31,7 @@ namespace ariel
         Character *leader;
 
         // ctor
-        Team(Character *leader);
+        Team(Character *caption);
         // des-ctor
         virtual ~Team()
         {
@@ -39,9 +39,9 @@ namespace ariel
             {
                 delete clan.at(i);
             }
-        };
-        virtual void add(Character *palyer);
-        virtual int stillAlive();
+        }
+        void add(Character *palyer);
+        int stillAlive();
         virtual void print();
         virtual Character *closestToMe(Team *);
         virtual void attack(Team *clans);

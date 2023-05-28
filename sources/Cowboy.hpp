@@ -20,7 +20,7 @@ namespace ariel
     class Cowboy : public Character
     {
     private:
-        int _hitPoints;
+        //int _hitPoints;
         int number_of_boolts;
 
     public:

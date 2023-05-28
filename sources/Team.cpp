@@ -2,36 +2,40 @@
 
 #include "Team.hpp"
 #include <vector>
+#include <cmath>
+#include <iostream>
+#include <cfloat>
 using namespace ariel;
 
-Team::Team(Character *caption) : leader(caption)
+Team::Team(Character *caption)
 {
-    if (leader->already_Caption)
+    this->leader = caption;
+    // throw if its aleardy the caption in another team
+    if (this->leader->already_Caption == true)
     {
         throw std::runtime_error(" im aleary leader in another team ");
     }
-    this->leader = caption;
-    this->clan.push_back(caption);
+
     this->leader->_member = true;
     this->leader->already_Caption = true;
+    this->clan.push_back(caption);
 }
 
 void Team::add(Character *player)
 {
-
     if (!player)
     {
         return;
     }
 
+    if (this->clan.size() >= 10)
+    {
+        throw std::runtime_error(" its full team !");
+    }
+
     if (player->_member == true)
     {
         throw std::runtime_error(" aleardy in the team ");
-    }
-
-    if (this->clan.size() == 10)
-    {
-        throw std::runtime_error(" its full team !");
     }
 
     // add them to vector of member's
@@ -41,97 +45,129 @@ void Team::add(Character *player)
 // infint loop
 int Team::stillAlive()
 {
-    int aliveCount = 0;
+    int amount = 0;
     for (size_t i = 0; i < this->clan.size(); i++)
     {
-        //cout << this->clan.at(i)->getName() << endl;
-        if (this->clan.at(i)->isAlive() == false)
+        if (this->clan.at(i)->isAlive() == true)
         {
-            i++;
+            amount += 1;
         }
-        aliveCount++;
     }
-    return aliveCount;
+    return amount;
 }
-void Team::print() {}
+void Team::print()
+{
+    // print cowboy properties by define  the sort
+    for (size_t i = 0; i < this->clan.size(); i++)
+    {
+        if (this->clan.at(i)->_sort == 1)
+        {
+            cout << this->clan.at(i)->print() << endl;
+        }
+    }
+    // print ninja properties by define  the sort
+    for (size_t i = 0; i < this->clan.size(); i++)
+    {
+        if (this->clan.at(i)->_sort == 2)
+        {
+            cout << this->clan.at(i)->print() << endl;
+        }
+    }
+}
 
 Character *Team::closestToMe(Team *team)
 {
 
-    Character *neighbor = nullptr;
-    // minimum distance from leader
-    double dist = std::numeric_limits<double>::max();
+    // Character *neighbor = nullptr;
+    //  maximum distance from leader
+    double dist = DBL_MAX;
 
     // this section to modify
     // the minimum distance from the leader
     size_t i = 0;
-    size_t n = 0;
     while (i < team->clan.size())
     {
         if (team->clan.at(i)->isAlive() == true && team->clan.at(i)->_sort == 1)
         {
             if (team->clan.at(i)->distance(this->leader) < dist)
+                // update the distance
                 dist = team->clan.at(i)->distance(this->leader);
         }
+
         i++;
     }
 
-    while (n < team->clan.size())
+    i = 0;
+    while (i < team->clan.size())
     {
-        if (team->clan.at(n)->isAlive() == true && team->clan.at(n)->_sort == 2)
+        if (team->clan.at(i)->isAlive() == true && team->clan.at(i)->_sort == 2)
         {
             if (team->clan.at(i)->distance(this->leader) < dist)
-                dist = team->clan.at(n)->distance(this->leader);
+            {
+                // update the distance
+                dist = team->clan.at(i)->distance(this->leader);
+            }
         }
-        n++;
+
+        i++;
     }
 
     // this siction to get this character that have
     // minimum distance from the leader
 
-    size_t j = 0;
-    size_t l = 0;
-
-    while (l < team->clan.size())
+    i = 0;
+    while (i < team->clan.size())
     {
-        if (team->clan.at(l)->isAlive() == true && team->clan.at(l)->_sort == 1)
+
+        if (team->clan.at(i)->isAlive() == true && team->clan.at(i)->_sort == 1)
         {
-            if (team->clan.at(l)->distance(this->leader) == dist)
-                neighbor = team->clan.at(l);
+            if (team->clan.at(i)->distance(this->leader) == dist)
+            {
+                // neighbor = team->clan.at(l);
+                return team->clan.at(i);
+            }
         }
-        l++;
+
+        i++;
     }
 
-    while (j < team->clan.size())
+    i = 0;
+    while (i < team->clan.size())
     {
-        if (team->clan.at(j)->isAlive() == true && team->clan.at(j)->_sort == 2)
+        if (team->clan.at(i)->isAlive() == true && team->clan.at(i)->_sort == 2)
         {
-            if (team->clan.at(j)->distance(this->leader) == dist)
-                neighbor = team->clan.at(j);
+            if (team->clan.at(i)->distance(this->leader) == dist)
+            {
+                // neighbor = team->clan.at(l);
+                return team->clan.at(i);
+            }
         }
-        j++;
-    }
 
-    // return it
-    return neighbor;
+        i++;
+    }
+    return nullptr;
 }
 
 void Team::attack(Team *another_Clan)
 {
-
-    if (this->stillAlive() == 0 || another_Clan->stillAlive() == 0)
-    {
-        throw std::runtime_error("on of the side attacker or defender isnot alive ");
-    }
-
     if (another_Clan == nullptr)
     {
         throw std::invalid_argument("there no one to attack");
     }
 
-    if (this == another_Clan)
+    if (this->stillAlive() == 0)
     {
-        throw std::runtime_error("there no compition between members of the clan");
+        throw std::invalid_argument("the side attacker  isnot alive ");
+    }
+
+    if (another_Clan->stillAlive() == 0)
+    {
+        throw std::runtime_error(" defender isnot alive ");
+    }
+
+    if (another_Clan == this)
+    {
+        throw std::invalid_argument("there no compition between members of the clan");
     }
 
     if (this->leader->isAlive() == false)
@@ -139,40 +175,23 @@ void Team::attack(Team *another_Clan)
         this->leader = closestToMe(this);
     }
 
-    // the loop that attaack and have the main logic:
+    //  loop that attaack and have the main logic:
     // here we get the tearget(oppenet) that need to attack
     // deos some valdition that can be sured have alive target
     // and alive team and enemey teamand attack depond on sort :Ninja, Character
-    Character *oppenet = closestToMe(another_Clan);
+    Character *oppenet = this->closestToMe(another_Clan); // this
+
     for (size_t i = 0; i < this->clan.size(); i++)
     {
         if (another_Clan->stillAlive() == 0)
         {
             return;
         }
-        else
-        {
-            if (oppenet == nullptr)
-            {
-                return;
-            }
-            if (oppenet->isAlive() == false)
-            {
-                // find another oppent is alive to attack
-                oppenet = closestToMe(another_Clan);
-            }
 
-            // attack ninja logic
-            if (this->clan.at(i)->_sort == 2)
-            {
-                Ninja *c = static_cast<Ninja *>(this->clan.at(i));
-                if (c->isAlive() == false)
-                    continue;
-                if (c->_point.distance(oppenet->getLocation()) <= 1)
-                    c->slash(oppenet);
-                else
-                    c->move(oppenet);
-            }
+        if (oppenet->isAlive() == false)
+        {
+            // find another oppent is alive to attack
+            oppenet = closestToMe(another_Clan);
         }
 
         // attack Cowboy logic
@@ -180,11 +199,52 @@ void Team::attack(Team *another_Clan)
         {
             Cowboy *c = static_cast<Cowboy *>(this->clan.at(i));
             if (c->isAlive() == false)
+            {
                 continue;
+            }
             if (c->hasboolets() == false)
+            {
                 c->reload();
+            }
             else
+            {
                 c->shoot(oppenet);
+            }
+        }
+    }
+
+    for (size_t j = 0; j < this->clan.size(); j++)
+    {
+        if (another_Clan->stillAlive() == 0)
+        {
+            return;
+        }
+
+        if (oppenet->isAlive() == false)
+        {
+            // find the closest and then attack
+            oppenet = closestToMe(another_Clan);
+        }
+        // need to extract the ninja's
+        if (this->clan.at(j)->_sort == 2)
+        {
+            Ninja *c = static_cast<Ninja *>(this->clan.at(j));
+
+            if (c->isAlive() == false)
+            {
+                continue;
+            }
+
+            if (c->distance(oppenet) <= 1)
+            {
+                c->slash(oppenet);
+            }
+
+            else
+            {
+                c->move(oppenet);
+            }
         }
     }
 }
+

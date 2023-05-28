@@ -13,14 +13,16 @@ Character::Character(const string &name, Point location) : _name(name), _locatio
     this->already_Caption = false;
 }
 
-Character::Character() //: _name("default version"), _location(Point())
+Character::Character()
 {
 }
 
-double Character::distance(Character *other) const
+double Character::distance(Character *other)
 {
-    double dis = other->getLocation().distance(this->_location);
-    return dis;
+    // changed from to , because the test demands
+    // other->getLocation().distance(this->_location);
+      
+    return this->_location.distance(other->getLocation());
 }
 
 Point Character::getLocation()
@@ -30,37 +32,31 @@ Point Character::getLocation()
 
 // string Character::print() { return "hello"; }
 
-void Character::hit(int damage)
+void Character::hit(const int damage)
 {
-    if (damage < health_Points)
+    if (damage < 0)
     {
-        health_Points -= damage;
+        throw std::invalid_argument("cant be negative damage ");
     }
 
+    this->health_Points -= damage;
 }
 
 void Character::setName(string name)
 {
-    _name = name;
+    this->_name = name;
 }
 
 string Character::getName()
 {
-    return _name;
+    return this->_name;
 }
 bool Character::isAlive()
 {
-
-    cout << "here check :" << health_Points << endl;
     return this->health_Points > 0;
 }
 
-void Character::setHealth(int afterShoot)
+double Character::gethealth()
 {
-    health_Points -= afterShoot;
+    return this->health_Points;
 }
-
-// double Character::gethealth()
-// {
-//     return health_Points;
-// }
