@@ -30,7 +30,6 @@ Point Character::getLocation()
     return _location;
 }
 
-// string Character::print() { return "hello"; }
 
 void Character::hit(const int damage)
 {
