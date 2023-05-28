@@ -14,7 +14,7 @@ using std::string;
 using std::to_string;
 namespace ariel
 {
-    class Point
+    class Point // NOLINT
     {
     private:
         // cordinates for Piont
@@ -23,19 +23,21 @@ namespace ariel
 
     public:
         // ctor
-        Point(double, double);
+        Point(double, double); // NOLINT
 
         // default ctor
         Point();
 
         // properties
         double distance(const Point &) const;
-        // void
+        //  print properties
         string print();
 
-        // getter's (string value's)
+        // some point on line
+        // with distance tow points src and dest, opreation move to .
 
-        static Point moveTowards(Point, Point, double); // ->double -raduis
+        static Point moveTowards(Point, Point, double);
+
         double getx();
         double gety();
     };

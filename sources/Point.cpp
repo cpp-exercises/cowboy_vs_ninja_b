@@ -46,7 +46,9 @@ namespace ariel
         }
         double dx = point1._x - point0._x;
         double dy = point1._y - point0._y;
+        //  for cuur distance
         double curr_distance = sqrt(pow(dx, 2) + pow(dy, 2));
+
         if (curr_distance <= distance)
         {
             return point1;
@@ -54,7 +56,6 @@ namespace ariel
         // https://www.wikihow.com/Find-Scale-Factor
         double scalingFactor = distance / curr_distance;
         // new coordinates
-
         double new_x = point0._x + dx * scalingFactor;
         double new_y = point0._y + dy * scalingFactor;
         return Point{new_x, new_y};

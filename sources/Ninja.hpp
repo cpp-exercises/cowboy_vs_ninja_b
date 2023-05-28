@@ -19,7 +19,7 @@ class Ninja : public Character
     // with pure virtual function)
 protected:
     // data member's
-    int _speed;
+    int _speed; // NOLINT
 
 public:
     Point _point;

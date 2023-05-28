@@ -16,8 +16,8 @@ class Character
 {
 protected:
     /// data member's
-    string _name;
-    Point _location;
+    string _name;    // NOLINT
+    Point _location; // NOLINT
 
 public:
     bool _member;
@@ -25,7 +25,7 @@ public:
     // 1-> Cowboy
     // 2-> Ninja
     int _sort = 0;
-    int health_Points = 0;
+    int health_Points = 0;// NOLINT
     // ctor
     Character(const string &, Point);
     // default
